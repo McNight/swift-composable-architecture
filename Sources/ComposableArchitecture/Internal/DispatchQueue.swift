@@ -1,7 +1,7 @@
-import Dispatch
+import Foundation
 
 func mainActorNow<R: Sendable>(execute block: @MainActor @Sendable () -> R) -> R {
-  if DispatchQueue.getSpecific(key: key) == value {
+  if Thread.isMainThread {
     return MainActor._assumeIsolated {
       block()
     }
